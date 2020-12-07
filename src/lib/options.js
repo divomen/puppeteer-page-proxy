@@ -15,9 +15,20 @@ const setHeaders = (request) => {
         headers["sec-fetch-mode"] = "navigate";
         headers["sec-fetch-site"] = "none";
         headers["sec-fetch-user"] = "?1";
+        headers["sec-fetch-dest"] = "document";
     } else {
-        headers["sec-fetch-mode"] = "no-cors";
-        headers["sec-fetch-site"] = "same-origin";
+        // headers["sec-fetch-mode"] = "no-cors";
+        // headers["sec-fetch-site"] = "same-origin";
+        headers["sec-fetch-mode"] = "cors";
+        headers["sec-fetch-site"] = "cross-site";
+        headers["sec-fetch-dest"] = "empty";
+        if(headers["referer"]) {
+            let s =  headers["referer"];
+            if(s.endsWith('/')) {
+                s = s.substr(0, s.length - 1);
+            }
+            headers.origin = s;
+        }
     }
     return headers;
 };
