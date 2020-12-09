@@ -23,9 +23,6 @@ const requestHandler = async (request, proxy, overrides = {}) => {
         ignoreInvalidCookies: true,
         followRedirect: false
     };
-    if(/^https:\/\/streeteasy\.com/.test(request.url())) {
-        options.cookieJar.setCookieSync('_px3=70c6e163ceacf3f9ab201d6f773f8d72d13e316b6fe46e2776e40a41b9467bea:b6Eop5i1cYXVkFsVgIHstRNrPMSyeIXEIsoqPmv7K+/4aAkvl+WREaJeL9xcZ5CrP10cKrjsH96jczdbgN/YIA==:1000:UMhDMDiwa2bAd7Ic8gfm124pceeNDIPZKKj6TBmtf4ENBNyYddNbDHhrwb4UH1IIsdCqga3e4aekaQEZ8Ma2r1VnBxNkinVObdGDQFLNeTIbwD+u7wHQmrFlSP7lW4icX3BtTuwLC4jccf+KCOmrldfO7wt1BMczj5myp76LSZk=', 'https://streeteasy.com/');
-    }
     try {
         const response = await got(overrides.url || request.url(), options);
         // Set cookies manually because "set-cookie" doesn't set all cookies (?)
